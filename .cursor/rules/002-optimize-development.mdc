@@ -1,0 +1,44 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+---
+description: 优化代码修改和开发过程，确保最小修改获得最大收益，遵循Obsidian和CodeMirror开发规范
+globs: null
+alwaysApply: false
+---
+
+# 开发优化原则
+
+## Context
+- 修改现有代码时
+- 创建新的服务、模块或函数时
+- 在Obsidian插件开发过程中
+
+## Requirements
+- 进行代码修改时，确保以最小的改动获得最大的收益
+- 创建新组件前先详细评估是否可以复用现有组件
+- 严格遵守Obsidian和CodeMirror的API和开发规范
+- 保持代码简洁，避免过度工程化
+- 确保所有修改都与插件功能目标一致
+
+## Examples
+<example>
+✅ 修改一个函数以支持新特性，同时保持其原有功能不变
+✅ 在添加新功能前，先检查现有的API是否已提供类似功能
+✅ 使用CodeMirror提供的标准接口而非自定义实现
+</example>
+
+<example type="invalid">
+❌ 重写整个模块而非修改必要部分
+❌ 在不了解现有代码的情况下创建重复功能
+❌ 不遵循Obsidian插件API规范的实现方式
+</example>
+
+## Critical Rules
+  - 始终先考虑最小化代码修改，避免不必要的重构
+  - 深入理解现有代码和组件后再决定是否创建新的
+  - 严格遵循Obsidian插件API和CodeMirror的开发规范
+  - 保持代码可读性和可维护性，避免过度优化
+  - 任何修改都应该与插件的主要功能保持一致

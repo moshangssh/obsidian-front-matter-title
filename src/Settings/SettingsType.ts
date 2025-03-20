@@ -18,6 +18,14 @@ export type SettingsFeature = {
 
 export type TemplateValue = { main: string | null; fallback: string | null };
 export type TemplateNames = "common";
+
+export interface RegexExtractorSettings {
+  enabled: boolean;
+  pattern: string;
+  groupIndex: number;
+  priority: 'before' | 'after'; // 是否优先于frontmatter提取
+}
+
 export type SettingsType = {
     version: string;
     templates: { common: TemplateValue };
@@ -36,6 +44,7 @@ export type SettingsType = {
         background: boolean;
     };
     features: SettingsFeature;
+    regexExtractor: RegexExtractorSettings;
 };
 
 export type SettingsEvent = {

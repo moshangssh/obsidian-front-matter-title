@@ -71,6 +71,12 @@ export default class PluginHelper {
                 args: [],
                 type: null,
             },
+            regexExtractor: {
+                enabled: false,
+                pattern: "^[^_]+_\\d+_\\d+_\\d+_(.+)$",
+                groupIndex: 1,
+                priority: "before"
+            }
         };
     }
 }

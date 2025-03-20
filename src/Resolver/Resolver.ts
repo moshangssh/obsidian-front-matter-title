@@ -6,6 +6,10 @@ import EventDispatcherInterface from "../Components/EventDispatcher/Interfaces/E
 import { ResolverEvents } from "./ResolverType";
 import Event from "../Components/EventDispatcher/Event";
 import { CreatorInterface } from "@src/Creator/Interfaces";
+import RegexExtractor from "./RegexExtractor";
+import { App, TFile } from "obsidian";
+import Storage from "@src/Storage/Storage";
+import { SettingsType } from "@src/Settings/SettingsType";
 
 @injectable()
 export class Resolver implements ResolverDynamicInterface {
@@ -17,7 +21,13 @@ export class Resolver implements ResolverDynamicInterface {
         @inject(SI["creator:creator"])
         private creator: CreatorInterface,
         @inject(SI["event:dispatcher"])
-        private dispatcher: EventDispatcherInterface<ResolverEvents>
+        private dispatcher: EventDispatcherInterface<ResolverEvents>,
+        @inject(RegexExtractor) 
+        private regexExtractor: RegexExtractor,
+        @inject(SI["obsidian:app"]) 
+        private app: App,
+        @inject(SI["settings:storage"]) 
+        private settings: Storage<SettingsType>
     ) {}
 
     setTemplate(template: string): void {
@@ -25,7 +35,44 @@ export class Resolver implements ResolverDynamicInterface {
     }
 
     resolve(path: string): string | null {
-        return this.valid(path) ? this.get(path) : null;
+        if (!this.valid(path)) {
+            return null;
+        }
+
+        // 获取文件对象
+        const file = this.app.vault.getAbstractFileByPath(path);
+        if (!(file instanceof TFile)) {
+            return null;
+        }
+        
+        const filename = file.basename;
+        const priority = this.settings.get('regexExtractor').get('priority').value();
+        
+        // 根据优先级决定尝试顺序
+        if (priority === 'before') {
+            // 先尝试正则提取
+            const regexTitle = this.regexExtractor.extract(filename);
+            if (regexTitle) {
+                return this.dispatch(regexTitle, path);
+            }
+            
+            // 再尝试原有的提取方法
+            return this.get(path);
+        } else {
+            // 先尝试原有的提取方法
+            const originalTitle = this.get(path);
+            if (originalTitle) {
+                return originalTitle;
+            }
+            
+            // 如果原有方法提取失败，则尝试正则提取
+            const regexTitle = this.regexExtractor.extract(filename);
+            if (regexTitle) {
+                return this.dispatch(regexTitle, path);
+            }
+        }
+        
+        return null;
     }
 
     private get(path: string): string | null {

@@ -205,6 +205,29 @@ const en = {
             disable: "Disable features",
         },
     },
+    regexExtractor: {
+        title: "Filename Regex Extractor",
+        enabled: {
+            name: "Enable Filename Regex Extractor",
+            desc: "Use regular expressions to extract title from filename"
+        },
+        pattern: {
+            name: "Regular Expression",
+            desc: "The regular expression used to extract title from filename"
+        },
+        groupIndex: {
+            name: "Capture Group Index",
+            desc: "Capture group index to use (zero-based)"
+        },
+        priority: {
+            name: "Extraction Priority",
+            desc: "Determines whether regex extraction is attempted before or after frontmatter extraction",
+            options: {
+                before: "Regex First",
+                after: "Frontmatter First"
+            }
+        }
+    },
 };
 
 export default en;

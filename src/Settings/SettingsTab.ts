@@ -41,7 +41,7 @@ export default class SettingsTab {
     }
 
     private get orderedKeys(): (keyof SettingsType)[] {
-        return ["templates", "processor", "rules", "features", "debug", "boot"];
+        return ["templates", "processor", "rules", "regexExtractor", "features", "debug", "boot"];
     }
 
     public getTab(): PluginSettingTab {

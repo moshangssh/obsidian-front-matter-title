@@ -33,6 +33,7 @@ import FakeTitleElementService from "@src/Utils/FakeTitleElementService";
 import BooleanStrategy from "@src/Components/Extractor/BooleanStrategy";
 import SearchDomWrapperService from "../src/Utils/SearchDomWrapperService";
 import { Delayer, DelayerInterface } from "@src/Components/Delayer/Delayer";
+import RegexExtractor from "@src/Resolver/RegexExtractor";
 
 const Container = new _Container();
 Container.bind<EventDispatcherInterface<any>>(SI["event:dispatcher"]).to(EventDispatcher).inSingletonScope();
@@ -73,5 +74,7 @@ Container.bind(SI["factory:replacer"]).toFunction((t: any, m: any, a: unknown, i
     FunctionReplacer.create(t, m, a, i)
 );
 Container.bind(SI["service:search:dom:wrapper"]).to(SearchDomWrapperService).inSingletonScope();
+
+Container.bind<RegexExtractor>(RegexExtractor).toSelf().inSingletonScope();
 
 export default Container;

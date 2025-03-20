@@ -12,6 +12,7 @@ Plugin give some options to display data from yaml block instead of original fil
 - [Template Examples](./docs/TemplateExamples.md)
 - [Features](./docs/Features.md)
 - [Processor](./docs/Processor.md)
+- [Regex Extractor](./docs/RegexExtractor.md)
 - [Api](#api)
 
 ---
@@ -55,6 +56,8 @@ title: 'A new shown title' # will be used, if template is title
 foo:
   bar: 'Dot-notation shown title' # will be used, if template is foo.bar
 ```
+
+Additionally, you can use the [Regex Extractor](./docs/RegexExtractor.md) to extract titles directly from filenames using regular expressions.
 
 [**See more**](./docs/TemplateExamples.md)
 

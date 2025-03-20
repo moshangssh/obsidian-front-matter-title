@@ -14,6 +14,7 @@ import RulesPathsBuilder from "@src/Settings/SettingBuilders/Rules/RulesPathsBui
 import ProcessorBuilder from "../../src/Settings/SettingBuilders/Processor/ProcessorBuilder";
 import NoteLinkBuilder from "@src/Settings/FeatureBuilder/NoteLinkBuilder";
 import ExplorerBuilder from "@src/Settings/FeatureBuilder/ExplorerBuilder";
+import RegexExtractorBuilder from "@src/Settings/SettingBuilders/Util/RegexExtractorBuilder";
 
 export default (c: Container) => {
     c.bind(SI["settings:feature:builder"]).to(DefaultBuilder).whenTargetNamed("default");
@@ -35,6 +36,7 @@ export default (c: Container) => {
     c.bind(SI["settings:builder"]).to(UtilBuilder).whenTargetNamed("main");
     c.bind(SI["settings:builder"]).to(RulesBuiler).whenTargetNamed("main");
     c.bind(SI["settings:builder"]).to(ProcessorBuilder).whenTargetNamed("main");
+    c.bind(SI["settings:builder"]).to(RegexExtractorBuilder).whenTargetNamed("main");
 
     c.bind(SI["settings:builder"]).to(RulesDelimiterBuilder).whenTargetNamed("rules");
     c.bind(SI["settings:builder"]).to(RulesPathsBuilder).whenTargetNamed("rules");

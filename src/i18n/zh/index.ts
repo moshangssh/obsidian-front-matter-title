@@ -38,6 +38,10 @@ const zh: Translation = {
         [Feature.Explorer]: {
             name: "文件资源管理器",
             desc: "替换文件资源管理器中显示的标题",
+            sort: {
+                name: "排序",
+                desc: "根据Explorer功能中的标题对文件进行排序",
+            },
         },
         [Feature.Graph]: {
             name: "图谱",
@@ -79,17 +83,25 @@ const zh: Translation = {
             name: "笔记链接",
             desc: "替换笔记中的内部链接",
             strategy: {
+                name: "策略",
+                desc: "定义特性功能对链接的处理策略",
                 options: {
                     all: "替换全部链接",
                     onlyEmpty: "只替换没有别名的链接",
                 },
             },
             approval: {
+                name: "确认方式",
+                desc: "插件是否需要请求您确认更改",
                 options: {
                     showModal: "显示确认窗口",
                     auto: "使用自动确认",
                 },
             },
+        },
+        [Feature.WindowFrame]: {
+            name: "窗口框架标题",
+            desc: "替换窗口框架中显示的标题",
         },
     },
     manage: "管理",
@@ -152,6 +164,10 @@ const zh: Translation = {
         title: "延迟启动加载",
         desc: "插件将在指定时间（毫秒）后加载",
     },
+    boot_background: {
+        title: "后台启动",
+        desc: "插件将在后台加载，不会阻塞应用程序",
+    },
     disabled: "禁用",
     processor: {
         name: "处理器",
@@ -177,12 +193,40 @@ const zh: Translation = {
             desc: "将怎样起作用:",
             valueDesc: "你在文本区输入的值",
         },
+        functionV2: {
+            name: "函数 V2",
+            desc: "将怎样起作用:",
+            valueDesc: "你在文本区输入的值",
+        },
     },
     command: {
         features: {
             reload: "重新加载特性功能",
             disable: "禁用特性功能",
         },
+    },
+    regexExtractor: {
+        title: "文件名正则提取器",
+        enabled: {
+            name: "启用文件名正则提取器",
+            desc: "使用正则表达式从文件名中提取标题"
+        },
+        pattern: {
+            name: "正则表达式",
+            desc: "用于从文件名中提取标题的正则表达式"
+        },
+        groupIndex: {
+            name: "捕获组索引",
+            desc: "要使用的捕获组索引（从0开始计数）"
+        },
+        priority: {
+            name: "提取优先级",
+            desc: "决定正则提取是在frontmatter提取之前还是之后尝试",
+            options: {
+                before: "正则提取优先",
+                after: "Frontmatter优先"
+            }
+        }
     },
 };
 
